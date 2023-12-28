@@ -16,6 +16,10 @@ class VideoFrames():
         gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         return gray_image
     
+    def resize_frame(self, frame):
+        resized_frame = cv2.resize(frame, (256, 256))
+        return resized_frame
+    
     def get_frames(self, video_url):
         self.video = self.read_video(video_url)
 
@@ -24,8 +28,10 @@ class VideoFrames():
             ret, frame = self.video.read()
             #print cap.isOpened(), ret
             if frame is not None:
+                # Resize the frame to 512x512
+                resized_frame = self.resize_frame(frame)
                 # Display the resulting frame
-                self.video_frames.append(frame)
+                self.video_frames.append(resized_frame)
             else:
                 break
 

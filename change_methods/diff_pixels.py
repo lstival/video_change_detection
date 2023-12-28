@@ -1,7 +1,7 @@
 from tqdm import tqdm
 import numpy as np
 
-def diff_betweens_pixels(gray_video_frames, reference, T1=64, T2_tax = 0.8):
+def diff_betweens_pixels(gray_video_frames, reference, T1=240, T2_tax = 0.9):
 
     #List with the diff between the frames
     list_pixels_diff = []

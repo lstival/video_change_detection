@@ -2,7 +2,7 @@ from collections import Counter
 from tqdm import tqdm
 import numpy as np
 
-def diff_betweens_boxes(gray_video_frames, reference, T1_limiar=2, T2_limit=0.9, box_size=8):
+def diff_betweens_boxes(gray_video_frames, reference, T1_limiar=2000, T2_limit=0.90, box_size=64):
     #Limiar to MSE
     H = gray_video_frames.shape[1] / box_size
     W = gray_video_frames.shape[2] / box_size
@@ -43,7 +43,10 @@ def diff_betweens_boxes(gray_video_frames, reference, T1_limiar=2, T2_limit=0.9,
     list_diff_pixels_MSE = []
     dict_pixels_diff = Counter(list_pixels_diff)
 
-    T2 = max(dict_pixels_diff.values())*T2_limit
+    try:
+        T2 = max(dict_pixels_diff.values())*T2_limit
+    except:
+        T2 = 0
 
     #Loop to count how many boxes each frame have with diff.
     for disct_frame, value in dict_pixels_diff.items():

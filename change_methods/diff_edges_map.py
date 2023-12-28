@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from tqdm import tqdm
 
-def diff_edge_maps(video_frames, reference, down_limit = 30, up_limite = 90, T1_limiar = 0.98):
+def diff_edge_maps(video_frames, reference, down_limit = 10, up_limite = 50, T1_limiar = 0.99):
 
     edges_diffences = []
 
