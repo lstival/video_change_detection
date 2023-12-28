@@ -23,8 +23,9 @@ def emsemble_mapping(gray_video_frames, reference, avalible_methods, threshold=2
                                         return_counts=True)[1] >= threshold]
 
     #Avoid return none frame
-    if key_frames == []:
-        key_frames = emsemble_mapping(gray_video_frames, threshold-1)
+    if len(key_frames) == 0:
+        # key_frames = emsemble_mapping(gray_video_frames, avalible_methods, threshold-1)
+        key_frames = np.array([99999])
     
     #Return the frames that apears more or equal the limiar
     return key_frames, list_print

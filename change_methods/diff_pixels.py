@@ -9,9 +9,7 @@ def diff_betweens_pixels(gray_video_frames, reference, T1=64, T2_tax = 0.8):
     #List with indexs where the pixel pass the secong threshould
     list_over_T2 = []
 
-    pbar = tqdm(total=len(gray_video_frames)-1)
-    for frame in pbar:
-        pbar.set_description(f"Processing {frame} Diff Pixels")
+    for frame in tqdm(range(len(gray_video_frames)-1)):
 
         actual = gray_video_frames[frame]
         # if reference is None:
