@@ -1,7 +1,7 @@
-from tqdm import tqdm
 import numpy as np
 
-def diff_betweens_pixels(gray_video_frames, reference, T1=240, T2_tax = 0.9):
+# def diff_betweens_pixels(gray_video_frames, reference=None, T1=240, T2_tax = 0.9):
+def diff_betweens_pixels(gray_video_frames, reference=None, T1=240, T2_tax = 0.95):
 
     #List with the diff between the frames
     list_pixels_diff = []
@@ -9,15 +9,18 @@ def diff_betweens_pixels(gray_video_frames, reference, T1=240, T2_tax = 0.9):
     #List with indexs where the pixel pass the secong threshould
     list_over_T2 = []
 
-    for frame in tqdm(range(len(gray_video_frames)-1)):
+    for frame in range(len(gray_video_frames)-1):
 
         actual = gray_video_frames[frame]
-        # if reference is None:
-        #     next =  gray_video_frames[frame+1]
-        # else:
-        next = reference
-    
-        list_pixels_diff.append(np.unique((actual - next) > T1, return_counts=True)[1][1])
+        if reference is None:
+            next =  gray_video_frames[frame+1]
+        else:
+            next = reference
+
+        try:
+            list_pixels_diff.append(np.unique((actual - next) > T1, return_counts=True)[1][1])
+        except:
+            list_pixels_diff.append(0)
     
     T2 = int(max(list_pixels_diff) * T2_tax)
 

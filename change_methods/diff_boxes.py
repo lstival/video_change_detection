@@ -15,7 +15,7 @@ def diff_betweens_boxes(gray_video_frames, reference, T1_limiar=2000, T2_limit=0
     list_pixels_diff = []
 
     #Loop in each frame
-    for frame in tqdm(range(len(gray_video_frames)-1)):
+    for frame in range(len(gray_video_frames)-1):
         #Loop in rows
         for row in range(int(gray_video_frames[frame].shape[0]/box_size)):
             #Loop in collumns

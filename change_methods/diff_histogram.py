@@ -1,4 +1,3 @@
-from tqdm import tqdm
 import numpy as np
 
 def diff_betweens_histogram(gray_video_frames, reference):
@@ -12,7 +11,7 @@ def diff_betweens_histogram(gray_video_frames, reference):
     sigma = 2
 
     #Loop for each frame in the video
-    for frame in tqdm(range(len(gray_video_frames)-1)):
+    for frame in range(len(gray_video_frames)-1):
         actual = np.histogram(gray_video_frames[frame], np.arange(histSize))[0]
         if reference is None:
             next = np.histogram(gray_video_frames[frame+1], np.arange(histSize))[0]

@@ -1,12 +1,11 @@
 import cv2
 import numpy as np
-from tqdm import tqdm
 
 def diff_edge_maps(video_frames, reference, down_limit = 10, up_limite = 50, T1_limiar = 0.99):
 
     edges_diffences = []
 
-    for frame in tqdm(range(len(video_frames)-1)):
+    for frame in range(len(video_frames)-1):
 
         actual = cv2.Canny(video_frames[frame],down_limit, up_limite)
         if reference is None:
